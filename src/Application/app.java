@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class app {
 
     private static Scanner input = new Scanner(System.in);
+    private static Contacts myContact;
 
     public static void menu(){
 
@@ -35,6 +36,7 @@ public class app {
 //                    break;
                 case 5:
                     showContacts();
+                    break;
                 case 6:
                     flag = false;
                     break;
@@ -43,15 +45,26 @@ public class app {
         }
     }
 
+    //Method to add a new contact in the phonebook
+    //Calls the method addToList(Contacts contact) from the phonebook class
     private static void storeContact(){
         System.out.println("Enter name: \r");
         String name = input.nextLine();
         System.out.println("Enter phone number: \r");
         String phoneNumber = input.nextLine();
-        Contacts myContact = new Contacts(name,phoneNumber);
+        myContact = new Contacts(name,phoneNumber);
         PhoneBook.addToList(myContact);
     }
 
+//    public static void searchContact(){
+//        System.out.println("Give name or number of contact: ");
+//        String name = input.nextLine();
+//        myContact = new Contacts();
+//        PhoneBook.searchContact(myContact);
+//    }
+
+    //Method that calls the .getList() method from the phonebook class
+    //to print the whole ArrayList
     public static void showContacts(){
         PhoneBook.getList();
     }
