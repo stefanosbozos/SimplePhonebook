@@ -57,10 +57,10 @@ public class app {
     }
 
 //    public static void searchContact(){
-//        System.out.println("Give name or number of contact: ");
+//        System.out.println("Search for: \r");
 //        String name = input.nextLine();
-//        myContact = new Contacts();
-//        PhoneBook.searchContact(myContact);
+////        myContact = new Contacts();
+//        PhoneBook.searchContact();
 //    }
 
     //Method that calls the .getList() method from the phonebook class
