@@ -5,18 +5,19 @@ import java.util.Scanner;
 public class App {
 
     private static Scanner input = new Scanner(System.in);
+    private boolean flag;
+
+    //Constructor that initializes the App object and starts the application.
+    public App(boolean flag){
+        this.flag = flag;
+        applicationState(flag);
+        AppUtilities.menu();
+    }
 
     //Prints out the menu of options the user can make.
-    public static void menu(){
+    public void menu(){
 
-        boolean flag = true;
         while(flag){
-            System.out.println("1 - Store Contact\n" +
-                    "2 - Modify Contact\n" +
-                    "3 - Remove Contact\n" +
-                    "4 - Search Contact\n" +
-                    "5 - Show Contact List\n" +
-                    "6 - Exit Application\r");
 
             int option = input.nextInt();
             input.nextLine();
@@ -38,12 +39,27 @@ public class App {
                     AppUtilities.showContacts();
                     break;
                 case 6:
+                    AppUtilities.menu();
+                    break;
+                case 7:
                     flag = false;
+                    applicationState(flag);
                     break;
             }
-
         }
     }
+
+    //Method that takes a boolean as a parameter
+    //and prints out a message at the start and
+    //the end of the application.
+    private void applicationState(boolean flag){
+        if(flag){
+            System.out.println("Starting Contacts Application...");
+        }else{
+            System.out.println("Exiting Application.");
+        }
+    }
+
 
 
 }

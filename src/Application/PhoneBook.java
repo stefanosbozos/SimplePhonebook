@@ -18,10 +18,10 @@ public class PhoneBook {
     //Calls indexSearch() to check if the element exist in the list
     //and removes it from the list.
     public static void deleteContact(String item){
-        int index = indexSearch(item);
+         int index = indexSearch(item);
         if(index >= 0){
             userPhoneBook.remove(index);
-            System.out.println(userPhoneBook.get(index).getName() + " has been deleted.");
+            System.out.println(item + " has been deleted.");
         }else{
             System.out.println("The contact you are trying to delete " +
                     "does not exist in the phonebook.");
@@ -34,23 +34,20 @@ public class PhoneBook {
     //of the previous element
     public static void modifyContact(String oldContact, Contacts newContact){
         int index = indexSearch(oldContact);
-        if(index >= 0){
-            userPhoneBook.set(index,newContact);
-        }else{
-            System.out.println("The contact you are trying to modify " +
-                    "does not exist in the phonebook.");
-        }
+        userPhoneBook.set(index,newContact);
     }
 
     //Searches for an element at the userPhoneBook arraylist
     //given by the user. Call the method indexSearch() to
     //check if the element exist and prints out the element.
-    public static void searchContact(String item){
+    public static boolean searchContact(String item){
         int index = indexSearch(item);
         if(index>=0){
             System.out.println(userPhoneBook.get(index) + "\n");
+            return true;
         }else {
             System.out.println("Contact not found.");
+            return false;
         }
     }
 
@@ -69,9 +66,15 @@ public class PhoneBook {
 
     //Prints out the whole userPhoneBook arraylist.
     public static void getList(){
-        for(int i=0; i<userPhoneBook.size(); i++){
-            System.out.println(userPhoneBook.get(i) + "\n");
-
+        if(!userPhoneBook.isEmpty()){
+            System.out.println("=== MY CONTACTS ===");
+            for(int i=0; i<userPhoneBook.size(); i++){
+                System.out.println(userPhoneBook.get(i) + "\n");
+            }
+        }else{
+            System.out.println("Phonebook empty...");
         }
+
     }
+
 }

@@ -7,6 +7,21 @@ public class AppUtilities {
     private static Scanner input = new Scanner(System.in);
     private static Contacts myContact;
 
+
+    //Method that prints out the options menu when
+    //the application is started.
+    public static void menu(){
+        System.out.println("======= MENU =======\n" +
+                "1 - Store Contact\n" +
+                "2 - Modify Contact\n" +
+                "3 - Remove Contact\n" +
+                "4 - Search Contact\n" +
+                "5 - Show Contact List\n" +
+                "6 - Show Menu\n" +
+                "7 - Exit Application\r");
+    }
+
+
     //Method to add a new contact in the phonebook
     //Calls the method addToList(Contacts contact) from the phonebook class
     public static void storeContact(){
@@ -23,12 +38,18 @@ public class AppUtilities {
     public static void modifyContact(){
         System.out.print("Enter name or number to modify: ");
         String item = input.nextLine();
-        System.out.println("Enter name of the new contact: ");
-        String name = input.nextLine();
-        System.out.print("Enter phone number of the new contact: ");
-        String phoneNumber = input.nextLine();
-        myContact = new Contacts(name, phoneNumber);
-        PhoneBook.modifyContact(item,myContact);
+        boolean exist = PhoneBook.searchContact(item);
+        if(exist){
+            System.out.println("Enter name of the new contact: ");
+            String name = input.nextLine();
+            System.out.print("Enter phone number of the new contact: ");
+            String phoneNumber = input.nextLine();
+            myContact = new Contacts(name, phoneNumber);
+            PhoneBook.modifyContact(item,myContact);
+        }else{
+            System.out.println("The contact you are trying to modify " +
+                    "does not exist.");
+        }
     }
 
     //Removes an existing contact from the PhoneBook ArrayList
